@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ICLR Project</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            margin-top: 40px;
+            font-size: 1.6rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 6px;
+        }
+
+        .result-row {
+            display: flex;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .result-row img, 
+        .result-row video {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .result-caption {
+            flex: 1;
+            min-width: 200px;
+            font-size: 0.95rem;
+        }
+
+        .teaser {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DRiFT: Differentiable Grid-Based Rigid–Fluid Coupling for Training and Control</h1>
+
+    <!-- Optional teaser image -->
+    <img src="assets/teaser.png" class="teaser" alt="Project Teaser">
+
+    <h2 class="section-title">Abstract</h2>
+    <p>
+        <!-- Replace this with your abstract -->
+        We introduce DRiFT, a differentiable grid-based method for fluid–rigid-body 
+        interaction enabling gradient-based control, trajectory optimization, and 
+        inverse simulation. Our method supports stable and efficient backward passes 
+        and couples variational pressure solves with rigid-body dynamics.
+    </p>
+
+    <h2 class="section-title">Results</h2>
+
+    <!-- Row 1 -->
+    <div class="result-row">
+        <img src="assets/result1.png" alt="Result 1">
+        <div class="result-caption">
+            <strong>Title of Result 1</strong><br>
+            Short description of what this result shows.
+        </div>
+    </div>
+
+    <!-- Row 2 (video example) -->
+    <div class="result-row">
+        <video src="assets/result2.mp4" autoplay loop muted playsinline></video>
+        <div class="result-caption">
+            <strong>Title of Result 2</strong><br>
+            Explanation of the experiment or visualization.
+        </div>
+    </div>
+
+    <!-- Add more rows as needed -->
+    <div class="result-row">
+        <img src="assets/result3.png" alt="Result 3">
+        <div class="result-caption">
+            <strong>Another Result</strong><br>
+            Another short explanation.
+        </div>
+    </div>
+
+    <h2 class="section-title">Paper</h2>
+    <p>
+        <a href="paper.pdf">[Download PDF]</a>
+    </p>
+
+</body>
+</html>
