@@ -1,113 +1,371 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ICLR Project</title>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Differentiable Simulator for Solid-Fluid Coupling">
+  <meta name="keywords" content="DRiFT, Simulation, Differentiable, Physics, Fluid, Coupling">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ICLR Submission 7856</title>
 
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            max-width: 900px;
-            margin: auto;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-        h1 {
-            font-size: 2.4rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
+    function gtag() {
+      dataLayer.push(arguments);
+    }
 
-        .section-title {
-            margin-top: 40px;
-            font-size: 1.6rem;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 6px;
-        }
+    gtag('js', new Date());
 
-        .result-row {
-            display: flex;
-            gap: 20px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-            align-items: center;
-        }
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
 
-        .result-row img, 
-        .result-row video {
-            width: 100%;
-            max-width: 420px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
 
-        .result-caption {
-            flex: 1;
-            min-width: 200px;
-            font-size: 0.95rem;
-        }
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
-        .teaser {
-            width: 100%;
-            max-width: 800px;
-            display: block;
-            margin: 20px auto;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-        }
-    </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
-
 <body>
-    <h1>DRiFT: Differentiable Grid-Based Rigid–Fluid Coupling for Training and Control</h1>
 
-    <!-- Optional teaser image -->
-    <img src="assets/teaser.png" class="teaser" alt="Project Teaser">
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
 
-    <h2 class="section-title">Abstract</h2>
-    <p>
-        <!-- Replace this with your abstract -->
-        We introduce DRiFT, a differentiable grid-based method for fluid–rigid-body 
-        interaction enabling gradient-based control, trajectory optimization, and 
-        inverse simulation. Our method supports stable and efficient backward passes 
-        and couples variational pressure solves with rigid-body dynamics.
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">DRiFT: Differentiable Grid-Based Rigid-Fluid Coupling for Training and Control</h1>
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+            </span>
+          </div> -->
+
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Washington,</span>
+            <span class="author-block"><sup>2</sup>Google Research</span>
+          </div> -->
+
+          <!-- <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Intelligent agents, interacting with physical environments, require an accurate understanding of the consequences of their action for efficient learning. Such agents are often trained inside simulated environments to alleviate over dependence on data, and gradients from such a simulation can help in training the agent. To this end, we present an end-to-end differentiable grid-based fluid simulation including strong two-way coupling with rigid bodies. In the forward pass, the solid-fluid boundary conditions are converted to a monolithic linear pressure solve using a variational method. For the backpropagation, we introduce a novel method of calculating and propagating gradients for the combined fluid-solid state using the adjoint method, which runs faster than the forward solve. This implementation, which is customized for coupling rigid bodies with inviscid fluids, is more suitable over general purpose methods like automatic differentiation, for use cases where performance is key for analyzing overall flow patterns and learning fluid properties. We demonstrate the utility of our simulator in training a neural network to learn optimal control for general target states. Additionally, we show the effectiveness of our differentiable simulator in isolation, by using the generated gradients for simple derivative based optimization tasks. Finally, we showcase the accuracy, robustness and efficiency of our gradient computation method.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section" id="opt_control">
+  <div class="container is-max-desktop">
+    <h1 class="title is-2">Optimal Control</h1>
+
+    <div class="columns is-variable is-1">
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <figure>
+          <a href="./static/images/learning_experiments_loss.pdf" target="_blank" rel="noopener">
+              <img src="./static/images/loss.png" alt="loss" style="width:100%; height:200px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
+          </a>
+          <figcaption class="has-text-centered" style="margin-top:8px;">(a) Control Loss</figcaption>
+        </figure>
+      </div>
+
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <figure>
+          <a href="./static/images/s_20_h_5.pdf" target="_blank" rel="noopener">
+              <img src="./static/images/s_20_h_5.png" alt="s_20_h_5" style="width:100%; height:200px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
+          </a>
+          <figcaption class="has-text-centered" style="margin-top:8px;">(b) (FV = 20, H = 5)</figcaption>
+        </figure>
+      </div>
+
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <figure>
+          <a href="./static/images/s_30_h_5.pdf" target="_blank" rel="noopener">
+              <img src="./static/images/s_30_h_5.png" alt="s_30_h_5" style="width:100%; height:200px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
+          </a>
+          <figcaption class="has-text-centered" style="margin-top:8px;">(c) (FV = 30, H = 5)</figcaption>
+        </figure>
+      </div>
+
+      <div class="column is-one-quarter-desktop is-half-tablet">
+        <figure>
+          <a href="./static/images/s_20_h_10.pdf" target="_blank" rel="noopener">
+              <img src="./static/images/s_20_h_10.png" alt="s_20_h_10" style="width:100%; height:200px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
+          </a>
+          <figcaption class="has-text-centered" style="margin-top:8px;">(d) (FV = 20, H = 10)</figcaption>
+        </figure>
+      </div>
+
+    </div>
+
+    <p class="has-text-centered is-size-6" style="margin-top:12px;">
+      <strong>(a)</strong> shows training loss v/s epoch, where FV is tangential fluid velocity and H is horizon length. <strong>(b), (c)</strong> and <strong>(d)</strong> show rigid body trajectory in test cases. Fluid is shown in light blue, with dark blue domain boundaries. Fluid motion is shown by light grey lines. Dark blue circle at the centre represents initial RBD position. Target locations are denoted by stars, with color matching the corresponding trajectory. Colorbar indicates how close a trajectory reaches the target.
     </p>
 
-    <h2 class="section-title">Results</h2>
+  </div>
+</section>
 
-    <!-- Row 1 -->
-    <div class="result-row">
-        <img src="assets/result1.png" alt="Result 1">
-        <div class="result-caption">
-            <strong>Title of Result 1</strong><br>
-            Short description of what this result shows.
+<section class="section" id="demos">
+  <div class="container is-max-desktop">
+    <h1 class="title is-2">Video Results</h1>
+    <div class="content">
+        <h2 class="title is-3">Dam Break 3D</h2>
+
+        <div class="columns is-variable is-8">
+          <div class="column is-half">
+            <figure>
+              <video id="dambreak3d_epoch_0" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/dam_break_3d_epoch_0.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 0</figcaption>
+            </figure>
+          </div>
+
+          <div class="column is-half">
+            <figure>
+              <video id="dambreak3d_epoch_58" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/dam_break_3d_epoch_58.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 58</figcaption>
+            </figure>
+          </div>
         </div>
+
     </div>
 
-    <!-- Row 2 (video example) -->
-    <div class="result-row">
-        <video src="assets/result2.mp4" autoplay loop muted playsinline></video>
-        <div class="result-caption">
-            <strong>Title of Result 2</strong><br>
-            Explanation of the experiment or visualization.
+    <div class="content">
+        <h2 class="title is-3">Dam Break 2D</h2>
+
+        <div class="columns is-variable is-8">
+          <div class="column is-half">
+            <figure>
+              <video id="dambreak2d_epoch_0" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/dam_break_2d_epoch_0.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 0</figcaption>
+            </figure>
+          </div>
+
+          <div class="column is-half">
+            <figure>
+              <video id="dambreak3d_epoch_39" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/dam_break_2d_epoch_39.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 39</figcaption>
+            </figure>
+          </div>
         </div>
+
     </div>
 
-    <!-- Add more rows as needed -->
-    <div class="result-row">
-        <img src="assets/result3.png" alt="Result 3">
-        <div class="result-caption">
-            <strong>Another Result</strong><br>
-            Another short explanation.
+    <div class="content">
+        <h2 class="title is-3">Text Optimization</h2>
+
+        <div class="columns is-variable is-8">
+          <div class="column is-half">
+            <figure>
+              <video id="text_epoch_0" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/letter_drop_epoch_0.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 0</figcaption>
+            </figure>
+          </div>
+
+          <div class="column is-half">
+            <figure>
+              <video id="text_epoch_19" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/letter_drop_epoch_19.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 19</figcaption>
+            </figure>
+          </div>
         </div>
+
+        <div class="content">
+        <h2 class="title is-3">Block Drop</h2>
+
+        <div class="columns is-variable is-8">
+          <div class="column is-half">
+            <figure>
+              <video id="block3d_epoch_0" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/3d_rbd_block_drop_epoch_0.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 0</figcaption>
+            </figure>
+          </div>
+
+          <div class="column is-half">
+            <figure>
+              <video id="block3d_epoch_49" autoplay controls muted loop playsinline style="width:100%; height:auto;">
+                <source src="./static/videos/3d_rbd_block_drop_epoch_49.mp4" type="video/mp4">
+              </video>
+              <figcaption class="has-text-centered" style="margin-top:8px;">Epoch 49</figcaption>
+            </figure>
+          </div>
+        </div>
+
     </div>
 
-    <h2 class="section-title">Paper</h2>
-    <p>
-        <a href="paper.pdf">[Download PDF]</a>
-    </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content has-text-centered">
+                        <p>
+                            Website template borrowed from <a
+                                href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
