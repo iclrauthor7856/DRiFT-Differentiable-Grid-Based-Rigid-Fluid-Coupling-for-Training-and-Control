@@ -348,7 +348,7 @@
         <div class="column is-half-desktop is-half-tablet">
           <figure>
             <a href="./static/images/lid_cavity_streamlines.png" target="_blank" rel="noopener">
-                <img src="./static/images/lid_cavity_streamlines.png" alt="loss" style="width:100%; height:400px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
+                <img src="./static/images/lid_cavity_streamlines.png" alt="lid_cavity" style="width:100%; height:400px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
             </a>
             <figcaption class="has-text-centered" style="margin-top:8px; font-style:normal;"><b>DRiFT</b></figcaption>
           </figure>
@@ -357,7 +357,7 @@
         <div class="column is-half-desktop is-half-tablet">
           <figure>
             <a href="./static/images/lid_cavity_streamlines_aquarium.png" target="_blank" rel="noopener">
-                <img src="./static/images/lid_cavity_streamlines_aquarium.png" alt="s_20_h_5" style="width:100%; height:400px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
+                <img src="./static/images/lid_cavity_streamlines_aquarium.png" alt="lid_cavity_aq" style="width:100%; height:400px; object-fit:cover; display:block; background:transparent; border:none; box-shadow:none;">
             </a>
             <figcaption class="has-text-centered" style="margin-top:8px; font-style:normal;"><b>Aquarium</b></figcaption>
           </figure>
@@ -366,7 +366,68 @@
       </div>
 
       <p class="has-text-centered is-size-6" style="margin-top:12px;">
-         We compare the result of our simulator DRiFT (specifically, velocity field) with Aquarium, in a lid-driven cavity scenario, where the domain is a 1m square divided into 50 x 50 grid cells, each of side length 0.02m. The velocity field is constrained to have zero velocity on the all boundaries, except the north boundary, which is fixed at 5m/s in +X direction. 
+         We compare the result of our simulator DRiFT (specifically, velocity field) with Aquarium, in a lid-driven cavity scenario, where the domain is a 1m square divided into 50 x 50 grid cells, each of side length 0.02m. The velocity field is constrained to have zero velocity on all boundaries, except the north boundary, which is fixed at 5m/s in +X direction. 
+      </p>
+    </div>
+
+    <div class="content">
+      <h2 class="title is-3">Freestream Cylinder</h2>
+      <p class="has-text-centered is-size-5" style="margin-bottom:8px;">Re = 40, u<sub>&infin;</sub> = 20</p>
+      <div class="columns is-variable is-1 is-vcentered">
+        <div class="column is-half-desktop is-half-tablet">
+          <figure>
+            <a href="./static/images/freestream_cylinder_vorticity_Re40.png" target="_blank" rel="noopener">
+                <img src="./static/images/freestream_cylinder_vorticity_Re40.png" alt="fs_cyl_40" style="width:100%; height:auto; display:block; background:transparent; border:none; box-shadow:none;">
+            </a>
+          </figure>
+        </div>
+
+        <div class="column is-half-desktop is-half-tablet">
+          <figure>
+            <a href="./static/images/freestream_cylinder_vorticity_Re40_aquarium.png" target="_blank" rel="noopener">
+                <img src="./static/images/freestream_cylinder_vorticity_Re40_aquarium.png" alt="fs_cyl_40_aq" style="width:100%; height:auto; display:block; background:transparent; border:none; box-shadow:none;">
+            </a>
+          </figure>
+        </div>
+
+      </div>
+      <div class="columns is-variable is-1">
+        <div class="column is-half-desktop is-half-tablet has-text-centered" style="margin-top:8px; font-style:normal;"><b>DRiFT</b></div>
+        <div class="column is-half-desktop is-half-tablet has-text-centered" style="margin-top:8px; font-style:normal;"><b>Aquarium</b></div>
+      </div>
+
+      <!-- <p class="has-text-centered is-size-6" style="margin-top:12px;">
+      </p> -->
+    </div>
+
+    <div class="content">
+      <!-- <h2 class="title is-3">Lid-Driven Cavity</h2> -->
+      <p class="has-text-centered is-size-5" style="margin-bottom:8px;">Re = 100, u<sub>&infin;</sub> = 50</p>
+      <div class="columns is-variable is-1 is-vcentered">
+        <div class="column is-half-desktop is-half-tablet">
+          <figure>
+            <a href="./static/images/freestream_cylinder_vorticity_Re100.png" target="_blank" rel="noopener">
+                <img src="./static/images/freestream_cylinder_vorticity_Re100.png" alt="fs_cyl_100" style="width:100%; height:auto; display:block; background:transparent; border:none; box-shadow:none;">
+            </a>
+          </figure>
+        </div>
+
+        <div class="column is-half-desktop is-half-tablet">
+          <figure>
+            <a href="./static/images/freestream_cylinder_vorticity_Re100_aquarium.png" target="_blank" rel="noopener">
+                <img src="./static/images/freestream_cylinder_vorticity_Re100_aquarium.png" alt="fs_cyl_100_aq" style="width:100%; height:auto; display:block; background:transparent; border:none; box-shadow:none;">
+            </a>
+          </figure>
+        </div>
+
+      </div>
+      <div class="columns is-variable is-1">
+        <div class="column is-half-desktop is-half-tablet has-text-centered" style="margin-top:8px; font-style:normal;"><b>DRiFT</b></div>
+        <div class="column is-half-desktop is-half-tablet has-text-centered" style="margin-top:8px; font-style:normal;"><b>Aquarium</b></div>
+      </div>
+
+      <p class="has-text-centered is-size-6" style="margin-top:12px;">
+         We compare the result of our simulator DRiFT (specifically, vorticity field) with Aquarium, in a freestream cylinder scenario, where the domain is a 4m square divided into 100 x 100 grid cells, each of side length 0.04m. The velocity field is constrained to have non-zero velocity u<sub>&infin;</sub> on all boundaries, the value being dependant on the Reynolds number Re. 
       </p>
     </div>
 
